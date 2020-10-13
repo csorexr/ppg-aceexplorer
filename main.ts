@@ -1,3 +1,93 @@
+function adjustTurretDirection () {
+    sprite_list = sprites.allOfKind(SpriteKind.Enemy)
+    for (let value of sprite_list) {
+        if (plane.x < value.x) {
+            if (value.x - plane.x > value.y - plane.y && sprites.readDataNumber(value, "facing") != 0) {
+                sprites.setDataNumber(value, "facing", 0)
+                value.setImage(img`
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    1 1 1 . . 1 1 1 1 1 . . . . . . 
+                    1 1 1 1 1 1 1 1 1 1 1 1 . . . . 
+                    . 1 1 1 1 1 1 1 1 1 1 1 1 . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+                    `)
+            } else if (value.x - plane.x < value.y - plane.y && sprites.readDataNumber(value, "facing") != 1) {
+                sprites.setDataNumber(value, "facing", 1)
+                value.setImage(img`
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . 1 1 . . . . . . . . . . . . 
+                    . . 1 1 1 . . . . . . . . . . . 
+                    . . . 1 1 1 . . . . . . . . . . 
+                    . . . . 1 1 1 1 1 1 . . . . . . 
+                    . . . . 1 1 1 1 1 1 1 1 . . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+                    `)
+            }
+        } else {
+            if (plane.x - value.x > value.y - plane.y && sprites.readDataNumber(value, "facing") != 2) {
+                sprites.setDataNumber(value, "facing", 2)
+                value.setImage(img`
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . 1 1 1 1 1 . . . 1 1 1 
+                    . . . . 1 1 1 1 1 1 1 1 1 1 1 1 
+                    . . . 1 1 1 1 1 1 1 1 1 1 1 1 . 
+                    . . . 1 1 1 1 1 1 1 1 1 . . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 . . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 . . . . 
+                    `)
+            } else if (plane.x - value.x < value.y - plane.y && sprites.readDataNumber(value, "facing") != 3) {
+                sprites.setDataNumber(value, "facing", 3)
+                value.setImage(img`
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . 1 1 . . 
+                    . . . . . . . . . . . 1 1 1 . . 
+                    . . . . . . . . . 1 1 1 1 . . . 
+                    . . . . . 1 1 1 1 1 1 1 . . . . 
+                    . . . . 1 1 1 1 1 1 1 1 . . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+                    . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+                    `)
+            }
+        }
+    }
+}
 function checkFacing () {
     sprite_list = sprites.allOfKind(SpriteKind.Enemy)
     for (let value of sprite_list) {
@@ -52,33 +142,33 @@ plane = sprites.create(img`
     `, SpriteKind.Player)
 plane.setFlag(SpriteFlag.StayInScreen, true)
 controller.moveSprite(plane)
-for (let value of tiles.getTilesByType(myTiles.tile1)) {
+for (let value2 of tiles.getTilesByType(myTiles.tile1)) {
     mySprite2 = sprites.create(img`
-        . . . . c c c c c c . . . . . . 
-        . . . c 6 7 7 7 7 6 c . . . . . 
-        . . c 7 7 7 7 7 7 7 7 c . . . . 
-        . c 6 7 7 7 7 7 7 7 7 6 c . . . 
-        . c 7 c 6 6 6 6 c 7 7 7 c . . . 
-        . f 7 6 f 6 6 f 6 7 7 7 f . . . 
-        . f 7 7 7 7 7 7 7 7 7 7 f . . . 
-        . . f 7 7 7 7 6 c 7 7 6 f c . . 
-        . . . f c c c c 7 7 6 f 7 7 c . 
-        . . c 7 2 7 7 7 6 c f 7 7 7 7 c 
-        . c 7 7 2 7 7 c f c 6 7 7 6 c c 
-        c 1 1 1 1 7 6 f c c 6 6 6 c . . 
-        f 1 1 1 1 1 6 6 c 6 6 6 6 f . . 
-        f 6 1 1 1 1 1 6 6 6 6 6 c f . . 
-        . f 6 1 1 1 1 1 1 6 6 6 f . . . 
-        . . c c c c c c c c c f . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        1 1 1 . . 1 1 1 1 1 . . . . . . 
+        1 1 1 1 1 1 1 1 1 1 1 1 . . . . 
+        . 1 1 1 1 1 1 1 1 1 1 1 1 . . . 
+        . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+        . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+        . . . 1 1 1 1 1 1 1 1 1 1 . . . 
         `, SpriteKind.Enemy)
-    tiles.placeOnTile(mySprite2, value)
-    sprites.setDataBoolean(mySprite2, "facingLeft", true)
-    tiles.setTileAt(value, myTiles.transparency16)
+    tiles.placeOnTile(mySprite2, value2)
+    sprites.setDataNumber(mySprite2, "facing", 0)
+    tiles.setTileAt(value2, myTiles.transparency16)
 }
 game.onUpdateInterval(100, function () {
     if (scene.cameraProperty(CameraProperty.X) < 240) {
         scene.centerCameraAt(scene.cameraProperty(CameraProperty.X) + 1, scene.cameraProperty(CameraProperty.Y))
         plane.x += 1
     }
-    checkFacing()
+    adjustTurretDirection()
 })
